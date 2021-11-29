@@ -34,3 +34,10 @@ class UserSerializer(serializers.ModelSerializer):
         user.set_password(validated_data['password'])
         user.save()
         return user
+
+
+class ChangePasswordSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ['password']
