@@ -7,6 +7,7 @@ from rest_framework import status
 from django.contrib.auth.models import User
 from rest_framework import permissions
 from django.contrib.auth.hashers import make_password
+from rest_framework.authentication import BasicAuthentication
 
 #signup of users
 class RegisterView(generics.CreateAPIView):
@@ -15,13 +16,13 @@ class RegisterView(generics.CreateAPIView):
 
 #change password
 class ChangePasswordView(APIView):
+    authentication_classes = [BasicAuthentication]
     def post(self,request):
         user = User.objects.get(username=request.user.username)
         password = make_password(request.data.get('password'))
         user.password=password
         user.save()
         return Response({"password":"password changed successfully"})
-
 
 """
 class RegisterView(GenericAPIView):
