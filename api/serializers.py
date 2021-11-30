@@ -36,8 +36,9 @@ class UserSerializer(serializers.ModelSerializer):
         return user
 
 
-class ChangePasswordSerializer(serializers.ModelSerializer):
+"""class ChangePasswordSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
         fields = ['password']
+"""

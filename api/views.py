@@ -1,7 +1,7 @@
 # from rest_framework.generics import GenericAPIView
 from rest_framework.views import APIView
 from rest_framework import generics
-from .serializers import UserSerializer,ChangePasswordSerializer
+from .serializers import UserSerializer#,ChangePasswordSerializer
 from rest_framework.response import Response
 from rest_framework import status
 from django.contrib.auth.models import User
@@ -22,7 +22,8 @@ class ChangePasswordView(APIView):
         password = make_password(request.data.get('password'))
         user.password=password
         user.save()
-        return Response({"password":"password changed successfully"})
+        return Response({"password":"password changed successfully",
+                          "login":"http://127.0.0.1:8000/accounts/login/"})
 
 """
 class RegisterView(GenericAPIView):
